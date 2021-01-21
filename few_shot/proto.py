@@ -86,5 +86,9 @@ def compute_prototypes(support: torch.Tensor, k: int, n: int) -> torch.Tensor:
     """
     # Reshape so the first dimension indexes by class then take the mean
     # along that dimension to generate the "prototypes" for each class
+
+    # notice that if n is 1 and k is 60, then support set was 60 and the prototypes will be same as support samples'
+    # encodings. if n is 2 and k is 60, then support set was 120 and following will be (60, 2, enc_dim) and will
+    # result to (60, enc_dim)
     class_prototypes = support.reshape(k, n, -1).mean(dim=1)
     return class_prototypes

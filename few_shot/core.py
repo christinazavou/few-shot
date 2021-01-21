@@ -41,6 +41,8 @@ class NShotTaskSampler(Sampler):
             raise ValueError('num_tasks must be > 1.')
 
         self.num_tasks = num_tasks
+        if self.num_tasks != 1:
+            print("yuhu")
         # TODO: Raise errors if initialise badly
         self.k = k
         self.n = n
@@ -173,6 +175,11 @@ def prepare_nshot_task(n: int, k: int, q: int) -> Callable:
         x, y = batch
         x = x.double().cuda()
         # Create dummy 0-(num_classes - 1) label
+        # Note: basically because we only care about classifying query samples in the correct class
+        # and we don't care about name/id of class, we create zero based classes
+        # so we know that each q samples belong to the next class, so y will be the size of query samples
+        # and will be [0,0,0,0,1,1,1,1,2,2,2,2] if we have 3 classes with 4 queries
+        # so this makes it easy to do loss calculation after the softmax ...
         y = create_nshot_task_label(k, q).cuda()
         return x, y
 
