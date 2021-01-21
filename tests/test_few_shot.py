@@ -23,6 +23,8 @@ class TestNShotSampler(unittest.TestCase):
 
     def test_n_shot_sampler(self):
         n, k, q = 2, 4, 3
+        # NOTE: i think if num_task > 1 in NShotTaskSampler then we get support as x[:n*k] and next support as
+        # x[n*k+n*q:2(n*k+n*q)] etc
         n_shot_taskloader = DataLoader(self.dataset,
                                        batch_sampler=NShotTaskSampler(self.dataset, 100, n, k, q))
 

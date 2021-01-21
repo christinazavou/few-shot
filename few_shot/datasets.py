@@ -181,7 +181,7 @@ class DummyDataset(Dataset):
         """Dummy dataset for debugging/testing purposes
 
         A sample from the DummyDataset has (n_features + 1) features. The first feature is the index of the sample
-        in the data and the remaining features are the class index.
+        in the data and the remaining features are the class index (i.e. dummy features).
 
         # Arguments
             samples_per_class: Number of samples per class in the dataset

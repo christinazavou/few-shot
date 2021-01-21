@@ -3,7 +3,7 @@ import os
 
 PATH = os.path.dirname(os.path.realpath(__file__))
 
-DATA_PATH = None
+DATA_PATH = "/media/graphicslab/BigData/zavou/ANNFASS_CODE/few-shot/thedata"
 
 EPSILON = 1e-8
 
